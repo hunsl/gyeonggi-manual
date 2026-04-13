@@ -449,13 +449,72 @@
         .nav-item.search-hide { display: none !important; }
         .nav-item.search-match { background: #FEF3C7 !important; }
 
+        /* 서식 입력 + 인쇄 전용 CSS */
+        .print-input {
+            border: none;
+            border-bottom: 1.5px dashed #94A3B8;
+            background: #F8FAFC;
+            padding: 4px 8px;
+            font-size: inherit;
+            font-family: inherit;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .print-input:focus {
+            border-bottom-color: var(--primary-light);
+            background: #ECFDF5;
+        }
+        .print-input::placeholder {
+            color: #94A3B8;
+            font-style: italic;
+        }
+        #form-editor-container {
+            margin-top: 2rem;
+        }
+        .form-card {
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            border: 2px solid var(--border);
+        }
+        .form-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+        #print-area {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 20mm;
+            background: #fff;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        @page { size: A4; margin: 12mm; }
         @media print {
-            body { background: #fff; }
-            .main-header, .sidebar, .menu-toggle, .back-to-top, .sidebar-overlay, .sidebar-search-wrap, .bookmarks-wrap { display: none !important; }
+            body { background: #fff !important; }
+            .main-header, .sidebar, .menu-toggle, .back-to-top, .sidebar-overlay, .sidebar-search-wrap, .bookmarks-wrap, .no-print { display: none !important; }
             .main-container { display: block; }
             .main-content { padding: 0; overflow: visible; }
-            .page-section { display: none !important; box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
-            .page-section.active { display: block !important; }
+            .page-section { display: none !important; box-shadow: none; border: none; break-inside: avoid; }
+            .page-section.active { display: block !important; border: none; box-shadow: none; background: transparent; }
+            #form-editor-container { margin-top: 0; }
+            #print-area {
+                width: 100%;
+                min-height: auto;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0;
+                margin: 0;
+            }
+            .print-input {
+                border: none !important;
+                border-bottom: none !important;
+                background: transparent !important;
+                padding: 0;
+            }
+            footer { display: none !important; }
         }
     </style>
 </head>
@@ -503,7 +562,7 @@
             <ul id="nav-2" class="nav-items active">
                 <li class="nav-item" onclick="showPage('page-2-1')">1. 사업계획 수립 절차 (조사/개발)</li>
                 <li class="nav-item" onclick="showPage('page-2-2')">2. 시스템 개설 및 모집 홍보</li>
-                <li class="nav-item" onclick="showPage('page-2-3')">3. 교육생 선발 및 면접 <span class="new-badge">개정</span></li>
+                <li class="nav-item" onclick="showPage('page-2-3')">3. 교육생 선발 및 면접 <span class="new-badge">선발강화</span></li>
                 <li class="nav-item" onclick="showPage('page-2-4')">4. 학사/출결 관리 <span class="new-badge">개정</span></li>
                 <li class="nav-item" onclick="showPage('page-2-5')">5. 사후관리 및 동아리 운영</li>
                 <li class="nav-item" onclick="showPage('page-2-6')">6. 기업 협력 및 취업연계</li>
@@ -518,9 +577,10 @@
                 <li class="nav-item" onclick="showPage('page-4-1')">1. 고용24 계정신청 및 활용</li>
                 <li class="nav-item" onclick="showPage('page-4-2')">2. 취업현황 DB 및 사후관리</li>
             </ul>
-            <div class="nav-section-title" onclick="toggleNav('nav-forms')"><span>📝 서식 및 양식 모음</span><span class="arrow">▼</span></div>
-            <ul id="nav-forms" class="nav-items">
-                <li class="nav-item font-bold text-teal-700" onclick="showPage('page-forms')">전체 서식 다운로드 (예정)</li>
+            <div class="nav-section-title" onclick="toggleNav('nav-forms')"><span>📝 서식 및 양식 모음</span><span class="arrow">▲</span></div>
+            <ul id="nav-forms" class="nav-items active">
+                <li class="nav-item font-bold text-teal-700" onclick="showPage('page-forms')">2026 신규 필수 서식 3종</li>
+                <li class="nav-item" onclick="showPage('page-forms-all')">전체 서식 다운로드 (예정)</li>
             </ul>
         </nav>
 
@@ -950,11 +1010,13 @@
             </div>
 
             <div id="page-2-3" class="page-section">
-                <h2>Ⅱ-3. 교육생 선발 및 면접 기준 <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-sm ml-2">2026 개정</span></h2>
+                <h2 style="display:flex;align-items:center;justify-content:space-between;">Ⅱ-3. 교육생 선발 및 면접 기준 <span class="bg-red-100 text-red-700 px-3 py-1 rounded text-sm ml-2 font-bold">2026 개정</span></h2>
+
                 <div class="info-card">
-                    <h4 class="text-teal-800 text-lg font-bold mb-2">💡 네거티브(Negative) 선발 체계 전면 도입</h4>
-                    <p>기존의 실무자 주관이 개입되는 모호한 배제 조항(예: 3개월 내 취업불가자 배제 등)을 폐지했습니다. <strong>명백한 법적 배제 대상만 제외하고 누구나 지원 가능</strong>하며, 면접 시 <strong>'취업 의지'</strong>를 가장 중요하게 평가합니다.</p>
+                    <h4 class="text-teal-800 text-lg font-bold mb-2">💡 미취업자 우선 선발 (네거티브 선발 원칙)</h4>
+                    <p><strong>누구나 지원이 가능</strong>하되, <strong>명백한 법적 배제 대상만 제외</strong>합니다. <strong>고용보험 미가입 상태인 순수 미취업자를 최우선으로 선발</strong>하며, 면접 시 <strong>'취업 의지'</strong>를 가장 중요하게 평가합니다. 기존의 실무자 주관이 개입되는 모호한 배제 조항(예: 3개월 내 취업불가자 배제 등)은 전면 폐지되었습니다.</p>
                 </div>
+
                 <h3>1. 사업 참여 배제 대상 (명확화)</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
@@ -978,7 +1040,54 @@
                         </ul>
                     </div>
                 </div>
-                <h3>2. 면접 및 개강 체크리스트</h3>
+
+                <h3>2. 사업 참여 예외 허용 및 증빙 기준 (엄격 적용)</h3>
+                <table class="manual-table">
+                    <thead>
+                        <tr>
+                            <th width="20%">대상</th>
+                            <th width="35%">허용 조건</th>
+                            <th width="45%">필수 증빙서류</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center font-bold">자영업자</td>
+                            <td>연 매출 1억 5천만 원 미만 허용</td>
+                            <td>부가가치세 과세표준증명</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center font-bold">단시간 근로자</td>
+                            <td>주 15시간 미만 허용</td>
+                            <td>근로계약서 + 고용보험 확인 자료</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center font-bold">졸업예정 대학생</td>
+                            <td>4학년 2학기, 사이버대/방통대 허용</td>
+                            <td>재학증명서 또는 졸업예정증명서</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center font-bold">외국인</td>
+                            <td>F4 비자 소유, 경기도 거주 증빙 시</td>
+                            <td>외국인등록증 + 주민등록 사실증명</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>3. 강사양성과정 특화: 전력 조회 사전 고지</h3>
+                <div class="warning-card">
+                    <h4 class="text-red-800 text-lg font-bold mb-2">⚠️ 결격사유 사전 고지 의무</h4>
+                    <p>재단은 지원자의 범죄경력을 <strong>직접 조회할 권한이 없습니다.</strong> 따라서 <strong>모집공고 및 접수 단계</strong>에서 관련 결격사유(아동·청소년 관련 범죄 등)를 <strong>강하게 사전 고지</strong>하여, 해당 사유가 있는 지원자가 스스로 접수를 자제하도록 유도합니다.</p>
+                </div>
+
+                <h3>4. 전력 조회 사전 고지 대상 과정 및 적용 방법</h3>
+                <ul class="custom-list">
+                    <li><strong>대상 과정:</strong> 늘봄강사 양성, 초등 피지컬 코딩강사 양성, AI 딥러닝 전문강사 양성 등 강사양성 과정 전체</li>
+                    <li><strong>적용 방법:</strong> 잡아바(통합접수시스템) 자가진단에 <strong>필수 체크 문항</strong>을 추가하여, 결격사유 해당 여부를 지원자가 직접 확인·선언하도록 구성</li>
+                    <li><strong>고지 문구 예시:</strong> "본 과정은 아동·청소년 대상 교육 과정으로, 관련 법률에 따른 결격사유 해당자는 수료 후 활동이 제한될 수 있습니다."</li>
+                </ul>
+
+                <h3>5. 면접 및 개강 체크리스트</h3>
                 <table class="manual-table mt-2">
                     <thead>
                         <tr><th width="33%">① 면접 전</th><th width="33%">② 면접일</th><th width="34%">③ 개강일 및 이후</th></tr>
@@ -1146,7 +1255,45 @@
             </div>
 
             <div id="page-forms" class="page-section">
-                <h2>📝 학사관리 및 행정 서식 다운로드</h2>
+                <h2>📝 2026년 개편 신규 필수 서식 (웹 작성 지원)</h2>
+                <div class="info-card">
+                    <p><strong>별도 파일 다운로드 없이</strong> 아래 서식을 웹에서 바로 입력한 후 <strong>인쇄(Ctrl+P)</strong> 또는 <strong>PDF 저장</strong>이 가능합니다. 카드를 클릭하면 서식 편집기가 열립니다.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 no-print">
+                    <div class="form-card bg-white rounded-xl p-6 text-center" onclick="openForm('pledge')">
+                        <div class="text-4xl mb-3">📋</div>
+                        <h4 class="font-bold text-lg text-teal-900 mb-2">교육서약서</h4>
+                        <p class="text-sm text-gray-500">교육생 입과 시 징구하는 서약서</p>
+                        <span class="inline-block mt-3 bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">클릭하여 작성</span>
+                    </div>
+                    <div class="form-card bg-white rounded-xl p-6 text-center" onclick="openForm('sign')">
+                        <div class="text-4xl mb-3">✍️</div>
+                        <h4 class="font-bold text-lg text-teal-900 mb-2">심사위원 서명부</h4>
+                        <p class="text-sm text-gray-500">면접 심사위원 참석 확인 서명부</p>
+                        <span class="inline-block mt-3 bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">클릭하여 작성</span>
+                    </div>
+                    <div class="form-card bg-white rounded-xl p-6 text-center" onclick="openForm('security')">
+                        <div class="text-4xl mb-3">🔒</div>
+                        <h4 class="font-bold text-lg text-teal-900 mb-2">보안서약서</h4>
+                        <p class="text-sm text-gray-500">면접위원 개인정보 보안 서약서</p>
+                        <span class="inline-block mt-3 bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">클릭하여 작성</span>
+                    </div>
+                </div>
+
+                <div id="form-editor-container" style="display:none;">
+                    <div class="no-print flex items-center justify-between bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+                        <h3 id="form-editor-title" style="margin:0; font-size:1.1rem;"></h3>
+                        <button type="button" onclick="window.print()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-5 rounded-lg transition-colors text-sm flex items-center gap-2">
+                            🖨️ 인쇄 / PDF 저장
+                        </button>
+                    </div>
+                    <div id="print-area"></div>
+                </div>
+            </div>
+
+            <div id="page-forms-all" class="page-section">
+                <h2>📝 전체 서식 다운로드 (예정)</h2>
                 <div style="background: #F8FAFC; padding: 2rem; border-radius: 12px; text-align: center; border: 2px dashed #CBD5E1; margin: 1rem 0 2rem 0;">
                     <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚧</div>
                     <h3 style="margin-top: 0; color: #334155; font-size: 1.2rem; border:none; justify-content:center;">서식 파일(HWP/Excel) 업데이트 예정입니다.</h3>
@@ -1362,6 +1509,124 @@
                 });
             });
         })();
+
+        function openForm(formType) {
+            var container = document.getElementById('form-editor-container');
+            var titleEl = document.getElementById('form-editor-title');
+            var printArea = document.getElementById('print-area');
+            if (!container || !titleEl || !printArea) return;
+
+            var today = new Date();
+            var yyyy = today.getFullYear();
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var dd = String(today.getDate()).padStart(2, '0');
+            var dateStr = yyyy + '년 ' + mm + '월 ' + dd + '일';
+
+            var docStyle = 'font-family: Pretendard, sans-serif; color: #1E293B; line-height: 1.8;';
+            var titleStyle = 'text-align: center; font-size: 22px; font-weight: 800; margin-bottom: 24px; letter-spacing: 2px;';
+            var subTitleStyle = 'text-align: center; font-size: 14px; color: #64748B; margin-bottom: 32px;';
+            var inputStyle = 'border: none; border-bottom: 1.5px dashed #94A3B8; background: #F8FAFC; padding: 4px 8px; font-size: inherit; font-family: inherit; color: #1E293B; outline: none; min-width: 180px;';
+            var tableStyle = 'width: 100%; border-collapse: collapse; margin: 20px 0;';
+            var thStyle = 'border: 1px solid #CBD5E1; padding: 10px 12px; background: linear-gradient(135deg, #F8FAFC, #ECFDF5); color: #0F766E; font-weight: 700; text-align: center; font-size: 14px;';
+            var tdStyle = 'border: 1px solid #CBD5E1; padding: 10px 12px; font-size: 14px;';
+            var tdCenterStyle = 'border: 1px solid #CBD5E1; padding: 10px 12px; font-size: 14px; text-align: center;';
+
+            var html = '';
+
+            if (formType === 'pledge') {
+                titleEl.textContent = '📋 교육서약서 편집 중';
+                html = '<div style="' + docStyle + '">' +
+                    '<div style="text-align: right; font-size: 13px; color: #64748B; margin-bottom: 12px;">경기도일자리재단 북부사업본부</div>' +
+                    '<h1 style="' + titleStyle + '">교 육 서 약 서</h1>' +
+                    '<p style="' + subTitleStyle + '">2026년 경기북부 직업교육훈련 과정</p>' +
+                    '<div style="margin-bottom: 24px;">' +
+                    '<p style="margin-bottom: 12px;"><strong>과정명:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 60%;" placeholder="과정명을 입력하세요"></p>' +
+                    '<p style="margin-bottom: 12px;"><strong>일  자:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 200px;" value="' + dateStr + '"></p>' +
+                    '</div>' +
+                    '<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 32px;">' +
+                    '<p style="font-weight: 700; font-size: 15px; margin-bottom: 16px;">본인은 경기도일자리재단 북부사업본부에서 시행하는 직업교육훈련에 참여함에 있어 아래 사항을 성실히 이행할 것을 서약합니다.</p>' +
+                    '<ol style="padding-left: 20px; font-size: 14px; line-height: 2;">' +
+                    '<li>교육 기간 중 성실하게 출석하고, 교육에 적극적으로 참여하겠습니다.</li>' +
+                    '<li>교육 일수의 80% 이상 출석하여 수료 요건을 충족하겠습니다.</li>' +
+                    '<li>정당한 사유 없이 교육을 중도 포기하지 않겠습니다.</li>' +
+                    '<li>교육장 내 질서를 준수하고, 타 교육생의 학습권을 침해하지 않겠습니다.</li>' +
+                    '<li>교육 중 취득한 개인정보 및 강의자료를 외부에 유출하지 않겠습니다.</li>' +
+                    '<li>무단 탈락 또는 제적 시 향후 1년간 재참여 제한에 동의합니다.</li>' +
+                    '</ol>' +
+                    '</div>' +
+                    '<div style="text-align: center; margin-top: 48px; font-size: 15px;">' +
+                    '<p style="margin-bottom: 8px;">' + dateStr + '</p>' +
+                    '<p style="margin-top: 24px;">서약자 성명: <input type="text" class="print-input" style="' + inputStyle + ' width: 150px; text-align: center; font-size: 16px; font-weight: 700;" placeholder="성명"> (인)</p>' +
+                    '</div>' +
+                    '<div style="text-align: center; margin-top: 48px; font-size: 14px; color: #64748B;">' +
+                    '<p style="font-weight: 700; font-size: 16px; color: #0F766E;">경기도일자리재단 북부사업본부장 귀하</p>' +
+                    '</div>' +
+                    '</div>';
+            } else if (formType === 'sign') {
+                titleEl.textContent = '✍️ 심사위원 서명부 편집 중';
+                var rows = '';
+                for (var i = 1; i <= 5; i++) {
+                    rows += '<tr>' +
+                        '<td style="' + tdCenterStyle + '">' + i + '</td>' +
+                        '<td style="' + tdStyle + '"><input type="text" class="print-input" style="' + inputStyle + ' width: 90%;" placeholder="소속/직위"></td>' +
+                        '<td style="' + tdStyle + '"><input type="text" class="print-input" style="' + inputStyle + ' width: 90%;" placeholder="성명"></td>' +
+                        '<td style="' + tdCenterStyle + ' color: #94A3B8;">(서명)</td>' +
+                        '</tr>';
+                }
+                html = '<div style="' + docStyle + '">' +
+                    '<div style="text-align: right; font-size: 13px; color: #64748B; margin-bottom: 12px;">경기도일자리재단 북부사업본부</div>' +
+                    '<h1 style="' + titleStyle + '">심사위원 참석자 서명부</h1>' +
+                    '<div style="margin-bottom: 24px;">' +
+                    '<p style="margin-bottom: 12px;"><strong>과정명:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 60%;" placeholder="과정명을 입력하세요"></p>' +
+                    '<p style="margin-bottom: 12px;"><strong>일  자:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 200px;" value="' + dateStr + '"></p>' +
+                    '</div>' +
+                    '<table style="' + tableStyle + '">' +
+                    '<thead><tr>' +
+                    '<th style="' + thStyle + ' width: 10%;">번호</th>' +
+                    '<th style="' + thStyle + ' width: 35%;">소속 / 직위</th>' +
+                    '<th style="' + thStyle + ' width: 25%;">성명</th>' +
+                    '<th style="' + thStyle + ' width: 30%;">서명</th>' +
+                    '</tr></thead>' +
+                    '<tbody>' + rows + '</tbody>' +
+                    '</table>' +
+                    '<div style="text-align: center; margin-top: 48px; font-size: 14px; color: #64748B;">' +
+                    '<p style="font-weight: 700; font-size: 16px; color: #0F766E;">경기도일자리재단 북부사업본부장 귀하</p>' +
+                    '</div>' +
+                    '</div>';
+            } else if (formType === 'security') {
+                titleEl.textContent = '🔒 보안서약서 편집 중';
+                html = '<div style="' + docStyle + '">' +
+                    '<div style="text-align: right; font-size: 13px; color: #64748B; margin-bottom: 12px;">경기도일자리재단 북부사업본부</div>' +
+                    '<h1 style="' + titleStyle + '">보 안 서 약 서</h1>' +
+                    '<p style="' + subTitleStyle + '">면접위원 개인정보 보호 서약</p>' +
+                    '<div style="margin-bottom: 24px;">' +
+                    '<p style="margin-bottom: 12px;"><strong>일  자:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 200px;" value="' + dateStr + '"></p>' +
+                    '<p style="margin-bottom: 12px;"><strong>과정명:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 60%;" placeholder="과정명을 입력하세요"></p>' +
+                    '</div>' +
+                    '<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 32px;">' +
+                    '<p style="font-weight: 700; font-size: 15px; margin-bottom: 16px;">본인은 경기도일자리재단 북부사업본부의 직업교육훈련 면접 심사에 참여함에 있어, 아래의 보안 사항을 준수할 것을 서약합니다.</p>' +
+                    '<ol style="padding-left: 20px; font-size: 14px; line-height: 2;">' +
+                    '<li>면접 과정에서 취득한 지원자의 개인정보(성명, 연락처, 경력사항 등)를 외부에 유출하거나 목적 외로 사용하지 않겠습니다.</li>' +
+                    '<li>면접 평가 내용 및 결과를 제3자에게 공개하지 않겠습니다.</li>' +
+                    '<li>면접 관련 서류(지원서, 평가표 등)를 무단으로 복제·촬영·반출하지 않겠습니다.</li>' +
+                    '<li>면접 종료 후 제공받은 모든 자료를 즉시 반납하겠습니다.</li>' +
+                    '<li>상기 사항을 위반하여 발생하는 모든 법적 책임은 본인에게 있음을 확인합니다.</li>' +
+                    '</ol>' +
+                    '</div>' +
+                    '<div style="text-align: center; margin-top: 48px; font-size: 15px;">' +
+                    '<p style="margin-bottom: 8px;">' + dateStr + '</p>' +
+                    '<p style="margin-top: 24px;">면접위원 성명: <input type="text" class="print-input" style="' + inputStyle + ' width: 150px; text-align: center; font-size: 16px; font-weight: 700;" placeholder="성명"> (인)</p>' +
+                    '</div>' +
+                    '<div style="text-align: center; margin-top: 48px; font-size: 14px; color: #64748B;">' +
+                    '<p style="font-weight: 700; font-size: 16px; color: #0F766E;">경기도일자리재단 북부사업본부장 귀하</p>' +
+                    '</div>' +
+                    '</div>';
+            }
+
+            printArea.innerHTML = html;
+            container.style.display = 'block';
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     </script>
 </body>
 </html>
