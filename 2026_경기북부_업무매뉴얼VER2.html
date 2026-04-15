@@ -491,125 +491,274 @@
             border: 1px solid var(--border);
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         }
-        @page { size: A4; margin: 15mm 12mm; }
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
+
         @media print {
-            /* ── 기본 초기화 ── */
-            body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
-
-            /* ── 불필요한 요소 숨김 ── */
-            .main-header, .sidebar, .menu-toggle, .back-to-top,
-            .sidebar-overlay, .sidebar-search-wrap, .bookmarks-wrap,
-            .no-print, .info-card, footer { display: none !important; }
-
-            /* ── 레이아웃 구조 ── */
-            .main-container { display: block !important; }
-            .main-content { padding: 0 !important; overflow: visible !important; }
-
-            /* ── 섹션 처리 ── */
-            .page-section {
-                display: none !important;
-                box-shadow: none !important;
-                border: none !important;
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
-            .page-section.active {
+
+            body {
+                font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+                color: #0f172a !important;
+            }
+
+            .main-header,
+            .sidebar,
+            .menu-toggle,
+            .back-to-top,
+            .sidebar-overlay,
+            .sidebar-search-wrap,
+            .bookmarks-wrap,
+            .no-print,
+            .info-card,
+            .warning-card,
+            footer {
+                display: none !important;
+            }
+
+            .main-container {
                 display: block !important;
-                border: none !important;
-                box-shadow: none !important;
-                background: transparent !important;
+                overflow: visible !important;
+            }
+
+            .main-content {
+                display: block !important;
                 padding: 0 !important;
                 margin: 0 !important;
+                overflow: visible !important;
+                background: #ffffff !important;
             }
-            /* 섹션 제목·안내문 인쇄 제외 */
-            .page-section.active > h2 { display: none !important; }
 
-            /* ── 폼 에디터 영역 ── */
-            #form-editor-container { margin-top: 0 !important; }
-
-            /* ── 인쇄 영역 (A4 최적화) ── */
-            #print-area {
-                width: 100% !important;
-                max-width: 180mm !important;
-                min-height: auto !important;
+            .page-section {
+                display: none !important;
+                max-width: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
                 border: none !important;
                 box-shadow: none !important;
-                padding: 5mm 2mm !important;
-                margin: 0 auto !important;
+                background: transparent !important;
+                animation: none !important;
             }
 
-            /* ── 입력칸: 문서 텍스트처럼 자연스럽게 ── */
+            .page-section.active {
+                display: block !important;
+            }
+
+            .page-section.active > h2 {
+                display: none !important;
+            }
+
+            #form-editor-container {
+                margin-top: 0 !important;
+                padding: 0 !important;
+            }
+
+            #print-area {
+                width: 190mm !important;
+                max-width: 190mm !important;
+                min-height: auto !important;
+                margin: 0 auto !important;
+                padding: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                background: #ffffff !important;
+            }
+
+            #print-area .doc-box,
+            #print-area .form-card,
+            #print-area .print-card,
+            #print-area table,
+            #print-area .sign-box,
+            #print-area .doc-meta {
+                background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+                border: 1px solid #cbd5e1 !important;
+                border-radius: 12px !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
+                overflow: hidden !important;
+            }
+
+            #print-area .doc-header {
+                background: linear-gradient(135deg, #134E4A 0%, #0F766E 45%, #14B8A6 100%) !important;
+                color: #ffffff !important;
+                border-radius: 16px !important;
+                padding: 18px 20px !important;
+                margin-bottom: 16px !important;
+                box-shadow: 0 4px 14px rgba(15, 118, 110, 0.18) !important;
+                border: none !important;
+            }
+
+            #print-area .doc-header h1,
+            #print-area .doc-header h2,
+            #print-area .doc-header h3,
+            #print-area .doc-header p,
+            #print-area .doc-header span,
+            #print-area .doc-header div {
+                color: #ffffff !important;
+            }
+
+            #print-area h1 {
+                font-size: 26pt !important;
+                font-weight: 800 !important;
+                line-height: 1.25 !important;
+                letter-spacing: 1px !important;
+                text-align: center !important;
+                margin: 0 0 8px 0 !important;
+                color: #0F766E !important;
+            }
+
+            #print-area h2 {
+                font-size: 16pt !important;
+                font-weight: 700 !important;
+                line-height: 1.35 !important;
+                margin: 0 0 10px 0 !important;
+                color: #134E4A !important;
+            }
+
+            #print-area h3 {
+                font-size: 13.5pt !important;
+                font-weight: 700 !important;
+                line-height: 1.4 !important;
+                margin: 0 0 8px 0 !important;
+                color: #0F766E !important;
+            }
+
+            #print-area p,
+            #print-area li,
+            #print-area td,
+            #print-area th,
+            #print-area span,
+            #print-area div {
+                color: #111827 !important;
+                font-size: 12pt !important;
+                line-height: 1.75 !important;
+            }
+
             .print-input {
                 border: none !important;
-                border-bottom: 1px solid #333 !important;
-                background: transparent !important;
-                padding: 1px 2px !important;
-                color: #000 !important;
+                border-bottom: 1.5px solid #0F766E !important;
+                background: rgba(236, 253, 245, 0.85) !important;
+                border-radius: 4px 4px 0 0 !important;
+                padding: 3px 6px !important;
+                color: #111827 !important;
+                box-shadow: none !important;
+                appearance: none !important;
                 -webkit-appearance: none !important;
                 -moz-appearance: none !important;
-                appearance: none !important;
             }
+
             .print-input::placeholder {
                 color: transparent !important;
             }
 
-            /* ── 배경·그림자·강조색 제거 (흑백 대응) ── */
-            #print-area div {
-                background: transparent !important;
-                box-shadow: none !important;
-            }
-            #print-area div[style*="border-radius"] {
-                border-radius: 0 !important;
-                border: 1px solid #666 !important;
+            #print-area .doc-meta {
+                padding: 12px 14px !important;
+                margin-bottom: 16px !important;
             }
 
-            /* ── 텍스트 색상 단순화 ── */
-            #print-area h1 {
-                color: #000 !important;
-                letter-spacing: 4px !important;
-            }
-            #print-area p, #print-area li, #print-area strong,
-            #print-area span, #print-area div {
-                color: #000 !important;
+            #print-area .meta-label {
+                font-weight: 700 !important;
+                color: #0F766E !important;
             }
 
-            /* ── 줄간격·문단간격 확대 ── */
-            #print-area p {
-                line-height: 1.9 !important;
+            #print-area .meta-value {
+                color: #111827 !important;
+            }
+
+            #print-area .doc-box {
+                padding: 14px 16px !important;
+                margin-bottom: 14px !important;
+            }
+
+            #print-area .doc-box.soft {
+                background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
+            }
+
+            #print-area table {
+                width: 100% !important;
+                border-collapse: separate !important;
+                border-spacing: 0 !important;
+                margin-bottom: 14px !important;
+            }
+
+            #print-area th {
+                background: linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 100%) !important;
+                color: #0F766E !important;
+                font-weight: 700 !important;
+                border: 1px solid #94a3b8 !important;
+                padding: 10px 8px !important;
+                font-size: 11.5pt !important;
+            }
+
+            #print-area td {
+                background: #ffffff !important;
+                color: #111827 !important;
+                border: 1px solid #cbd5e1 !important;
+                padding: 10px 8px !important;
+                font-size: 11.5pt !important;
+                vertical-align: middle !important;
+            }
+
+            #print-area .sign-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 14px !important;
+                margin-top: 18px !important;
+            }
+
+            #print-area .sign-box {
+                padding: 14px !important;
+                min-height: 84px !important;
+            }
+
+            #print-area .sign-label {
+                font-size: 11pt !important;
+                font-weight: 700 !important;
+                color: #0F766E !important;
+                margin-bottom: 22px !important;
+            }
+
+            #print-area .sign-line {
+                border-bottom: 1.4px solid #0f172a !important;
+                height: 24px !important;
+            }
+
+            #print-area ol,
+            #print-area ul {
+                margin-top: 0 !important;
+                margin-bottom: 10px !important;
+                padding-left: 22px !important;
+            }
+
+            #print-area li {
                 margin-bottom: 6px !important;
             }
-            #print-area li {
-                line-height: 2.1 !important;
-                margin-bottom: 2px !important;
-            }
-            #print-area ol {
-                margin-bottom: 12px !important;
+
+            #print-area > div,
+            #print-area .doc-header,
+            #print-area .doc-meta,
+            #print-area .doc-box,
+            #print-area .sign-grid,
+            #print-area table,
+            #print-area tr {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
             }
 
-            /* ── 표 인쇄 최적화 ── */
-            #print-area table {
-                border-collapse: collapse !important;
-                width: 100% !important;
-            }
+            #print-area .doc-header,
+            #print-area .doc-box,
+            #print-area .form-card,
+            #print-area .print-card,
+            #print-area .doc-meta,
             #print-area th {
-                background: #f2f2f2 !important;
-                color: #000 !important;
-                border: 1px solid #333 !important;
-                padding: 10px 14px !important;
-                font-size: 13px !important;
-            }
-            #print-area td {
-                border: 1px solid #333 !important;
-                padding: 10px 14px !important;
-                color: #000 !important;
-            }
-
-            /* ── 페이지 안정화: 블록 끊김 방지 ── */
-            #print-area > div {
-                break-inside: avoid;
-                page-break-inside: avoid;
-            }
-            #print-area ol, #print-area table, #print-area div[style*="border"] {
-                break-inside: avoid;
-                page-break-inside: avoid;
+                background-clip: padding-box !important;
             }
         }
     </style>
@@ -1357,23 +1506,35 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 no-print">
-                    <div class="form-card bg-white rounded-xl p-6 text-center" onclick="openForm('pledge')">
-                        <div class="text-4xl mb-3">📋</div>
-                        <h4 class="font-bold text-lg text-teal-900 mb-2">교육서약서</h4>
-                        <p class="text-sm text-gray-500">교육생 입과 시 징구하는 서약서</p>
-                        <span class="inline-block mt-3 bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">클릭하여 작성</span>
+                    <div class="form-card rounded-xl overflow-hidden text-center" onclick="openForm('pledge')" style="background: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%); border: 2px solid #99f6e4;">
+                        <div style="background: linear-gradient(135deg, #134E4A 0%, #0F766E 50%, #14B8A6 100%); padding: 1.25rem 1rem; margin-bottom: 0;">
+                            <div style="width:52px;height:52px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;font-size:1.75rem;">📋</div>
+                            <h4 style="font-weight:800;font-size:1.05rem;color:#ffffff;margin:0 0 0.25rem;">교육서약서</h4>
+                            <p style="font-size:0.78rem;color:rgba(255,255,255,0.85);margin:0;">교육생 입과 시 징구하는 서약서</p>
+                        </div>
+                        <div style="padding: 0.9rem 1rem;">
+                            <span style="display:inline-block;background:linear-gradient(135deg,#0F766E,#14B8A6);color:#fff;padding:0.35rem 1.1rem;border-radius:9999px;font-size:0.78rem;font-weight:700;letter-spacing:0.5px;">✏️ 클릭하여 작성</span>
+                        </div>
                     </div>
-                    <div class="form-card bg-white rounded-xl p-6 text-center" onclick="openForm('sign')">
-                        <div class="text-4xl mb-3">✍️</div>
-                        <h4 class="font-bold text-lg text-teal-900 mb-2">심사위원 서명부</h4>
-                        <p class="text-sm text-gray-500">면접 심사위원 참석 확인 서명부</p>
-                        <span class="inline-block mt-3 bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">클릭하여 작성</span>
+                    <div class="form-card rounded-xl overflow-hidden text-center" onclick="openForm('sign')" style="background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%); border: 2px solid #a5b4fc;">
+                        <div style="background: linear-gradient(135deg, #312e81 0%, #4338ca 50%, #6366f1 100%); padding: 1.25rem 1rem; margin-bottom: 0;">
+                            <div style="width:52px;height:52px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;font-size:1.75rem;">✍️</div>
+                            <h4 style="font-weight:800;font-size:1.05rem;color:#ffffff;margin:0 0 0.25rem;">심사위원 서명부</h4>
+                            <p style="font-size:0.78rem;color:rgba(255,255,255,0.85);margin:0;">면접 심사위원 참석 확인 서명부</p>
+                        </div>
+                        <div style="padding: 0.9rem 1rem;">
+                            <span style="display:inline-block;background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;padding:0.35rem 1.1rem;border-radius:9999px;font-size:0.78rem;font-weight:700;letter-spacing:0.5px;">✏️ 클릭하여 작성</span>
+                        </div>
                     </div>
-                    <div class="form-card bg-white rounded-xl p-6 text-center" onclick="openForm('security')">
-                        <div class="text-4xl mb-3">🔒</div>
-                        <h4 class="font-bold text-lg text-teal-900 mb-2">보안서약서</h4>
-                        <p class="text-sm text-gray-500">면접위원 개인정보 보안 서약서</p>
-                        <span class="inline-block mt-3 bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold">클릭하여 작성</span>
+                    <div class="form-card rounded-xl overflow-hidden text-center" onclick="openForm('security')" style="background: linear-gradient(180deg, #ffffff 0%, #fff1f2 100%); border: 2px solid #fda4af;">
+                        <div style="background: linear-gradient(135deg, #881337 0%, #be123c 50%, #f43f5e 100%); padding: 1.25rem 1rem; margin-bottom: 0;">
+                            <div style="width:52px;height:52px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;font-size:1.75rem;">🔒</div>
+                            <h4 style="font-weight:800;font-size:1.05rem;color:#ffffff;margin:0 0 0.25rem;">보안서약서</h4>
+                            <p style="font-size:0.78rem;color:rgba(255,255,255,0.85);margin:0;">면접위원 개인정보 보안 서약서</p>
+                        </div>
+                        <div style="padding: 0.9rem 1rem;">
+                            <span style="display:inline-block;background:linear-gradient(135deg,#be123c,#f43f5e);color:#fff;padding:0.35rem 1.1rem;border-radius:9999px;font-size:0.78rem;font-weight:700;letter-spacing:0.5px;">✏️ 클릭하여 작성</span>
+                        </div>
                     </div>
                 </div>
 
