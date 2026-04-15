@@ -491,30 +491,126 @@
             border: 1px solid var(--border);
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         }
-        @page { size: A4; margin: 12mm; }
+        @page { size: A4; margin: 15mm 12mm; }
         @media print {
-            body { background: #fff !important; }
-            .main-header, .sidebar, .menu-toggle, .back-to-top, .sidebar-overlay, .sidebar-search-wrap, .bookmarks-wrap, .no-print { display: none !important; }
-            .main-container { display: block; }
-            .main-content { padding: 0; overflow: visible; }
-            .page-section { display: none !important; box-shadow: none; border: none; break-inside: avoid; }
-            .page-section.active { display: block !important; border: none; box-shadow: none; background: transparent; }
-            #form-editor-container { margin-top: 0; }
-            #print-area {
-                width: 100%;
-                min-height: auto;
+            /* ── 기본 초기화 ── */
+            body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+
+            /* ── 불필요한 요소 숨김 ── */
+            .main-header, .sidebar, .menu-toggle, .back-to-top,
+            .sidebar-overlay, .sidebar-search-wrap, .bookmarks-wrap,
+            .no-print, .info-card, footer { display: none !important; }
+
+            /* ── 레이아웃 구조 ── */
+            .main-container { display: block !important; }
+            .main-content { padding: 0 !important; overflow: visible !important; }
+
+            /* ── 섹션 처리 ── */
+            .page-section {
+                display: none !important;
+                box-shadow: none !important;
+                border: none !important;
+            }
+            .page-section.active {
+                display: block !important;
                 border: none !important;
                 box-shadow: none !important;
-                padding: 0;
-                margin: 0;
+                background: transparent !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
+            /* 섹션 제목·안내문 인쇄 제외 */
+            .page-section.active > h2 { display: none !important; }
+
+            /* ── 폼 에디터 영역 ── */
+            #form-editor-container { margin-top: 0 !important; }
+
+            /* ── 인쇄 영역 (A4 최적화) ── */
+            #print-area {
+                width: 100% !important;
+                max-width: 180mm !important;
+                min-height: auto !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 5mm 2mm !important;
+                margin: 0 auto !important;
+            }
+
+            /* ── 입력칸: 문서 텍스트처럼 자연스럽게 ── */
             .print-input {
                 border: none !important;
-                border-bottom: none !important;
+                border-bottom: 0.5pt solid #333 !important;
                 background: transparent !important;
-                padding: 0;
+                padding: 1px 2px !important;
+                color: #000 !important;
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                appearance: none !important;
             }
-            footer { display: none !important; }
+            .print-input::placeholder {
+                color: transparent !important;
+            }
+
+            /* ── 배경·그림자·강조색 제거 (흑백 대응) ── */
+            #print-area div {
+                background: transparent !important;
+                box-shadow: none !important;
+            }
+            #print-area div[style*="border-radius"] {
+                border-radius: 0 !important;
+                border: 1px solid #666 !important;
+            }
+
+            /* ── 텍스트 색상 단순화 ── */
+            #print-area h1 {
+                color: #000 !important;
+                letter-spacing: 4px !important;
+            }
+            #print-area p, #print-area li, #print-area strong,
+            #print-area span, #print-area div {
+                color: #000 !important;
+            }
+
+            /* ── 줄간격·문단간격 확대 ── */
+            #print-area p {
+                line-height: 1.9 !important;
+                margin-bottom: 6px !important;
+            }
+            #print-area li {
+                line-height: 2.1 !important;
+                margin-bottom: 2px !important;
+            }
+            #print-area ol {
+                margin-bottom: 12px !important;
+            }
+
+            /* ── 표 인쇄 최적화 ── */
+            #print-area table {
+                border-collapse: collapse !important;
+                width: 100% !important;
+            }
+            #print-area th {
+                background: #f2f2f2 !important;
+                color: #000 !important;
+                border: 1px solid #333 !important;
+                padding: 10px 14px !important;
+                font-size: 13px !important;
+            }
+            #print-area td {
+                border: 1px solid #333 !important;
+                padding: 10px 14px !important;
+                color: #000 !important;
+            }
+
+            /* ── 페이지 안정화: 블록 끊김 방지 ── */
+            #print-area > div {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            #print-area ol, #print-area table, #print-area div[style*="border"] {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
