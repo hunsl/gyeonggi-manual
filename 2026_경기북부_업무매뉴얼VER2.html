@@ -535,32 +535,31 @@
             }
 
             #print-area {
-                width: 190mm !important;
-                max-width: 190mm !important;
-                margin: 0 auto !important;
-                padding: 4mm !important;
                 border: none !important;
                 box-shadow: none !important;
+                padding: 4mm !important;
                 background: #fff !important;
             }
 
             /* 카드/박스 느낌 유지 */
-            #print-area .doc-header,
-            #print-area .form-card,
             #print-area .doc-box,
-            #print-area .print-card {
-                border-radius: 14px !important;
-                box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08) !important;
+            #print-area .form-card,
+            #print-area .print-card,
+            #print-area table {
                 border: 1px solid #D1D5DB !important;
+                border-radius: 12px !important;
                 background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+                overflow: hidden !important;
             }
 
-            /* 상단 헤더 그라데이션 배너 */
+            /* 헤더 */
             #print-area .doc-header {
                 background: linear-gradient(135deg, #134E4A 0%, #0F766E 45%, #14B8A6 100%) !important;
+                border-radius: 14px !important;
+                color: #fff !important;
                 padding: 18px 20px !important;
                 margin-bottom: 16px !important;
-                color: #fff !important;
             }
 
             #print-area .doc-header h1,
@@ -570,47 +569,28 @@
                 color: #fff !important;
             }
 
-            /* 제목 크기·굵기 강화 */
+            /* 제목 확대 */
             #print-area h1 {
                 font-size: 26pt !important;
                 font-weight: 800 !important;
+                letter-spacing: 1px !important;
                 text-align: center !important;
                 margin-bottom: 8px !important;
-                letter-spacing: 1px !important;
-                color: #0F766E !important;
             }
 
             #print-area h2 {
                 font-size: 16pt !important;
                 font-weight: 700 !important;
                 color: #0F766E !important;
-                margin-bottom: 10px !important;
             }
 
-            /* 본문 텍스트 */
-            #print-area p,
-            #print-area li,
-            #print-area td,
-            #print-area th {
-                font-size: 12.5pt !important;
-                line-height: 1.8 !important;
-                color: #111827 !important;
-            }
-
-            /* 테이블 헤더 그라데이션 */
-            #print-area th {
-                background: linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 100%) !important;
-                color: #0F766E !important;
-                font-weight: 700 !important;
-            }
-
-            /* 입력칸 민트 스타일 */
+            /* 입력칸 */
             .print-input {
                 border: none !important;
                 border-bottom: 1.5px solid #0F766E !important;
                 background: rgba(236, 253, 245, 0.85) !important;
-                padding: 3px 6px !important;
                 border-radius: 4px 4px 0 0 !important;
+                padding: 3px 6px !important;
                 color: #111827 !important;
             }
 
@@ -618,7 +598,14 @@
                 color: transparent !important;
             }
 
-            /* 페이지 분리 방지 */
+            /* 표 헤더도 살짝 강조 */
+            #print-area th {
+                background: linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 100%) !important;
+                color: #0F766E !important;
+                font-weight: 700 !important;
+            }
+
+            /* 페이지 중간 끊김 방지 */
             #print-area > div,
             #print-area table,
             #print-area .doc-box {
