@@ -491,6 +491,65 @@
             border: 1px solid var(--border);
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         }
+        /* 서식 클래스 - 화면 미리보기용 */
+        #print-area .doc-header {
+            background: linear-gradient(135deg, #134E4A 0%, #0F766E 45%, #14B8A6 100%);
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 14px rgba(15, 118, 110, 0.18);
+        }
+        #print-area .doc-header h1,
+        #print-area .doc-header p,
+        #print-area .doc-header div,
+        #print-area .doc-header span {
+            color: #ffffff;
+        }
+        #print-area .doc-meta {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+        }
+        #print-area .doc-box {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
+        #print-area .sign-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 18px;
+        }
+        #print-area .sign-box {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 14px;
+            min-height: 84px;
+        }
+        #print-area .sign-label {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #0F766E;
+            margin-bottom: 22px;
+        }
+        #print-area .sign-line {
+            border-bottom: 1.4px solid #0f172a;
+            height: 24px;
+        }
+        #print-area .meta-label {
+            font-weight: 700;
+            color: #0F766E;
+        }
+        #print-area .meta-value {
+            color: #111827;
+        }
         @page {
             size: A4;
             margin: 10mm;
@@ -1779,30 +1838,23 @@
             var dd = String(today.getDate()).padStart(2, '0');
             var dateStr = yyyy + '년 ' + mm + '월 ' + dd + '일';
 
-            var docStyle = 'font-family: Pretendard, sans-serif; color: #1E293B; line-height: 1.8;';
-            var titleStyle = 'text-align: center; font-size: 22px; font-weight: 800; margin-bottom: 24px; letter-spacing: 2px;';
-            var subTitleStyle = 'text-align: center; font-size: 14px; color: #64748B; margin-bottom: 32px;';
-            var inputStyle = 'border: none; border-bottom: 1.5px dashed #94A3B8; background: #F8FAFC; padding: 4px 8px; font-size: inherit; font-family: inherit; color: #1E293B; outline: none; min-width: 180px;';
-            var tableStyle = 'width: 100%; border-collapse: collapse; margin: 20px 0;';
-            var thStyle = 'border: 1px solid #CBD5E1; padding: 10px 12px; background: linear-gradient(135deg, #F8FAFC, #ECFDF5); color: #0F766E; font-weight: 700; text-align: center; font-size: 14px;';
-            var tdStyle = 'border: 1px solid #CBD5E1; padding: 10px 12px; font-size: 14px;';
-            var tdCenterStyle = 'border: 1px solid #CBD5E1; padding: 10px 12px; font-size: 14px; text-align: center;';
-
             var html = '';
 
             if (formType === 'pledge') {
                 titleEl.textContent = '📋 교육서약서 편집 중';
-                html = '<div style="' + docStyle + '">' +
-                    '<div style="text-align: right; font-size: 13px; color: #64748B; margin-bottom: 12px;">경기도일자리재단 북부사업본부</div>' +
-                    '<h1 style="' + titleStyle + '">교 육 서 약 서</h1>' +
-                    '<p style="' + subTitleStyle + '">2026년 경기북부 직업교육훈련 과정</p>' +
-                    '<div style="margin-bottom: 24px;">' +
-                    '<p style="margin-bottom: 12px;"><strong>과정명:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 60%;" placeholder="과정명을 입력하세요"></p>' +
-                    '<p style="margin-bottom: 12px;"><strong>일  자:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 200px;" value="' + dateStr + '"></p>' +
+                html = '<div>' +
+                    '<div class="doc-header">' +
+                    '<div style="text-align:right; font-size:12px; opacity:0.85; margin-bottom:6px;">경기도일자리재단 북부사업본부</div>' +
+                    '<h1>교 육 서 약 서</h1>' +
+                    '<p>2026년 경기북부 직업교육훈련 과정</p>' +
                     '</div>' +
-                    '<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 32px;">' +
-                    '<p style="font-weight: 700; font-size: 15px; margin-bottom: 16px;">본인은 경기도일자리재단 북부사업본부에서 시행하는 직업교육훈련에 참여함에 있어 아래 사항을 성실히 이행할 것을 서약합니다.</p>' +
-                    '<ol style="padding-left: 20px; font-size: 14px; line-height: 2;">' +
+                    '<div class="doc-meta">' +
+                    '<p><span class="meta-label">과정명:</span> <input type="text" class="print-input" placeholder="과정명을 입력하세요" style="width:60%;"></p>' +
+                    '<p><span class="meta-label">일  자:</span> <input type="text" class="print-input" value="' + dateStr + '" style="width:200px;"></p>' +
+                    '</div>' +
+                    '<div class="doc-box">' +
+                    '<p style="font-weight:700; margin-bottom:12px;">본인은 경기도일자리재단 북부사업본부에서 시행하는 직업교육훈련에 참여함에 있어 아래 사항을 성실히 이행할 것을 서약합니다.</p>' +
+                    '<ol>' +
                     '<li>교육 기간 중 성실하게 출석하고, 교육에 적극적으로 참여하겠습니다.</li>' +
                     '<li>교육 일수의 80% 이상 출석하여 수료 요건을 충족하겠습니다.</li>' +
                     '<li>정당한 사유 없이 교육을 중도 포기하지 않겠습니다.</li>' +
@@ -1811,12 +1863,23 @@
                     '<li>무단 탈락 또는 제적 시 향후 1년간 재참여 제한에 동의합니다.</li>' +
                     '</ol>' +
                     '</div>' +
-                    '<div style="text-align: center; margin-top: 48px; font-size: 15px;">' +
-                    '<p style="margin-bottom: 8px;">' + dateStr + '</p>' +
-                    '<p style="margin-top: 24px;">서약자 성명: <input type="text" class="print-input" style="' + inputStyle + ' width: 150px; text-align: center; font-size: 16px; font-weight: 700;" placeholder="성명"> (인)</p>' +
+                    '<div class="doc-box soft" style="margin-top:12px;">' +
+                    '<p>위와 같이 서약합니다.</p>' +
+                    '<p>' + dateStr + '</p>' +
                     '</div>' +
-                    '<div style="text-align: center; margin-top: 48px; font-size: 14px; color: #64748B;">' +
-                    '<p style="font-weight: 700; font-size: 16px; color: #0F766E;">경기도일자리재단 북부사업본부장 귀하</p>' +
+                    '<div class="sign-grid">' +
+                    '<div class="sign-box">' +
+                    '<div class="sign-label">서약자</div>' +
+                    '<div>성명: <input type="text" class="print-input" placeholder="홍길동" style="width:180px;"></div>' +
+                    '<div class="sign-line"></div>' +
+                    '</div>' +
+                    '<div class="sign-box">' +
+                    '<div class="sign-label">확인</div>' +
+                    '<div class="sign-line"></div>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="doc-meta" style="margin-top:16px; text-align:center;">' +
+                    '<p style="font-weight:700; color:#0F766E;">경기도일자리재단 북부사업본부장 귀하</p>' +
                     '</div>' +
                     '</div>';
             } else if (formType === 'sign') {
@@ -1824,45 +1887,49 @@
                 var rows = '';
                 for (var i = 1; i <= 5; i++) {
                     rows += '<tr>' +
-                        '<td style="' + tdCenterStyle + '">' + i + '</td>' +
-                        '<td style="' + tdStyle + '"><input type="text" class="print-input" style="' + inputStyle + ' width: 90%;" placeholder="소속/직위"></td>' +
-                        '<td style="' + tdStyle + '"><input type="text" class="print-input" style="' + inputStyle + ' width: 90%;" placeholder="성명"></td>' +
-                        '<td style="' + tdCenterStyle + ' color: #94A3B8;">(서명)</td>' +
+                        '<td>' + i + '</td>' +
+                        '<td><input type="text" class="print-input" placeholder="소속/직위" style="width:90%;"></td>' +
+                        '<td><input type="text" class="print-input" placeholder="성명" style="width:90%;"></td>' +
+                        '<td style="text-align:center;"><span class="meta-value">(서명)</span></td>' +
                         '</tr>';
                 }
-                html = '<div style="' + docStyle + '">' +
-                    '<div style="text-align: right; font-size: 13px; color: #64748B; margin-bottom: 12px;">경기도일자리재단 북부사업본부</div>' +
-                    '<h1 style="' + titleStyle + '">심사위원 참석자 서명부</h1>' +
-                    '<div style="margin-bottom: 24px;">' +
-                    '<p style="margin-bottom: 12px;"><strong>과정명:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 60%;" placeholder="과정명을 입력하세요"></p>' +
-                    '<p style="margin-bottom: 12px;"><strong>일  자:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 200px;" value="' + dateStr + '"></p>' +
+                html = '<div>' +
+                    '<div class="doc-header">' +
+                    '<div style="text-align:right; font-size:12px; opacity:0.85; margin-bottom:6px;">경기도일자리재단 북부사업본부</div>' +
+                    '<h1>심사위원 참석자 서명부</h1>' +
                     '</div>' +
-                    '<table style="' + tableStyle + '">' +
+                    '<div class="doc-meta">' +
+                    '<p><span class="meta-label">과정명:</span> <input type="text" class="print-input" placeholder="과정명을 입력하세요" style="width:60%;"></p>' +
+                    '<p><span class="meta-label">일  자:</span> <input type="text" class="print-input" value="' + dateStr + '" style="width:200px;"></p>' +
+                    '</div>' +
+                    '<table>' +
                     '<thead><tr>' +
-                    '<th style="' + thStyle + ' width: 10%;">번호</th>' +
-                    '<th style="' + thStyle + ' width: 35%;">소속 / 직위</th>' +
-                    '<th style="' + thStyle + ' width: 25%;">성명</th>' +
-                    '<th style="' + thStyle + ' width: 30%;">서명</th>' +
+                    '<th>번호</th>' +
+                    '<th>소속 / 직위</th>' +
+                    '<th>성명</th>' +
+                    '<th>서명</th>' +
                     '</tr></thead>' +
                     '<tbody>' + rows + '</tbody>' +
                     '</table>' +
-                    '<div style="text-align: center; margin-top: 48px; font-size: 14px; color: #64748B;">' +
-                    '<p style="font-weight: 700; font-size: 16px; color: #0F766E;">경기도일자리재단 북부사업본부장 귀하</p>' +
+                    '<div class="doc-meta" style="margin-top:24px; text-align:center;">' +
+                    '<p style="font-weight:700; color:#0F766E;">경기도일자리재단 북부사업본부장 귀하</p>' +
                     '</div>' +
                     '</div>';
             } else if (formType === 'security') {
                 titleEl.textContent = '🔒 보안서약서 편집 중';
-                html = '<div style="' + docStyle + '">' +
-                    '<div style="text-align: right; font-size: 13px; color: #64748B; margin-bottom: 12px;">경기도일자리재단 북부사업본부</div>' +
-                    '<h1 style="' + titleStyle + '">보 안 서 약 서</h1>' +
-                    '<p style="' + subTitleStyle + '">면접위원 개인정보 보호 서약</p>' +
-                    '<div style="margin-bottom: 24px;">' +
-                    '<p style="margin-bottom: 12px;"><strong>일  자:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 200px;" value="' + dateStr + '"></p>' +
-                    '<p style="margin-bottom: 12px;"><strong>과정명:</strong> <input type="text" class="print-input" style="' + inputStyle + ' width: 60%;" placeholder="과정명을 입력하세요"></p>' +
+                html = '<div>' +
+                    '<div class="doc-header">' +
+                    '<div style="text-align:right; font-size:12px; opacity:0.85; margin-bottom:6px;">경기도일자리재단 북부사업본부</div>' +
+                    '<h1>보 안 서 약 서</h1>' +
+                    '<p>면접위원 개인정보 보호 서약</p>' +
                     '</div>' +
-                    '<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; margin-bottom: 32px;">' +
-                    '<p style="font-weight: 700; font-size: 15px; margin-bottom: 16px;">본인은 경기도일자리재단 북부사업본부의 직업교육훈련 면접 심사에 참여함에 있어, 아래의 보안 사항을 준수할 것을 서약합니다.</p>' +
-                    '<ol style="padding-left: 20px; font-size: 14px; line-height: 2;">' +
+                    '<div class="doc-meta">' +
+                    '<p><span class="meta-label">일  자:</span> <input type="text" class="print-input" value="' + dateStr + '" style="width:200px;"></p>' +
+                    '<p><span class="meta-label">과정명:</span> <input type="text" class="print-input" placeholder="과정명을 입력하세요" style="width:60%;"></p>' +
+                    '</div>' +
+                    '<div class="doc-box">' +
+                    '<p style="font-weight:700; margin-bottom:12px;">본인은 경기도일자리재단 북부사업본부의 직업교육훈련 면접 심사에 참여함에 있어, 아래의 보안 사항을 준수할 것을 서약합니다.</p>' +
+                    '<ol>' +
                     '<li>면접 과정에서 취득한 지원자의 개인정보(성명, 연락처, 경력사항 등)를 외부에 유출하거나 목적 외로 사용하지 않겠습니다.</li>' +
                     '<li>면접 평가 내용 및 결과를 제3자에게 공개하지 않겠습니다.</li>' +
                     '<li>면접 관련 서류(지원서, 평가표 등)를 무단으로 복제·촬영·반출하지 않겠습니다.</li>' +
@@ -1870,12 +1937,23 @@
                     '<li>상기 사항을 위반하여 발생하는 모든 법적 책임은 본인에게 있음을 확인합니다.</li>' +
                     '</ol>' +
                     '</div>' +
-                    '<div style="text-align: center; margin-top: 48px; font-size: 15px;">' +
-                    '<p style="margin-bottom: 8px;">' + dateStr + '</p>' +
-                    '<p style="margin-top: 24px;">면접위원 성명: <input type="text" class="print-input" style="' + inputStyle + ' width: 150px; text-align: center; font-size: 16px; font-weight: 700;" placeholder="성명"> (인)</p>' +
+                    '<div class="doc-box soft" style="margin-top:12px;">' +
+                    '<p>위와 같이 서약합니다.</p>' +
+                    '<p>' + dateStr + '</p>' +
                     '</div>' +
-                    '<div style="text-align: center; margin-top: 48px; font-size: 14px; color: #64748B;">' +
-                    '<p style="font-weight: 700; font-size: 16px; color: #0F766E;">경기도일자리재단 북부사업본부장 귀하</p>' +
+                    '<div class="sign-grid">' +
+                    '<div class="sign-box">' +
+                    '<div class="sign-label">면접위원</div>' +
+                    '<div>성명: <input type="text" class="print-input" placeholder="홍길동" style="width:180px;"></div>' +
+                    '<div class="sign-line"></div>' +
+                    '</div>' +
+                    '<div class="sign-box">' +
+                    '<div class="sign-label">확인</div>' +
+                    '<div class="sign-line"></div>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="doc-meta" style="margin-top:16px; text-align:center;">' +
+                    '<p style="font-weight:700; color:#0F766E;">경기도일자리재단 북부사업본부장 귀하</p>' +
                     '</div>' +
                     '</div>';
             }
