@@ -17,6 +17,7 @@
             --border: #E2E8F0;
             --text: #1E293B;
             --text-muted: #64748B;
+            --text-disabled: #94A3B8;
             --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
             --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.05);
             --radius: 12px;
@@ -161,6 +162,14 @@
             font-weight: 600;
             border-left-color: var(--primary-light);
             box-shadow: inset 2px 0 0 var(--primary-light);
+        }
+        .nav-item.pending-disabled {
+            cursor: not-allowed;
+            color: var(--text-disabled);
+        }
+        .nav-item.pending-disabled:hover {
+            background: inherit;
+            color: var(--text-disabled);
         }
         .menu-toggle {
             display: none;
@@ -955,7 +964,7 @@
             <div class="nav-section-title" onclick="toggleNav('nav-forms')"><span>📝 서식 및 양식 모음</span><span class="arrow">▲</span></div>
             <ul id="nav-forms" class="nav-items active">
                 <li class="nav-item font-bold text-teal-700" onclick="showPage('page-forms')">2026 신규 필수 서식 3종</li>
-                <li class="nav-item" onclick="showPage('page-forms-all')">전체 서식 다운로드 (예정)</li>
+                <li class="nav-item pending-disabled">전체 서식 다운로드 (예정)</li>
             </ul>
         </nav>
 
