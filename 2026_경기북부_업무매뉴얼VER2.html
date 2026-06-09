@@ -458,8 +458,12 @@
             font-size: inherit;
             font-family: inherit;
             color: var(--text);
+            text-align: center;
             outline: none;
             transition: border-color 0.2s, background 0.2s;
+        }
+        #print-area .form-text-center {
+            text-align: center;
         }
         .print-input:focus {
             border-bottom-color: var(--primary-light);
@@ -1911,7 +1915,7 @@
 
             if (formType === 'pledge') {
                 titleEl.textContent = '📋 교육서약서 편집 중';
-                html = '<div>' +
+                html = '<div class="form-text-center">' +
                     '<div class="doc-header">' +
                     '<div style="text-align:center; font-size:14pt; font-weight:600; margin-bottom:8px;">경기도일자리재단 북부사업본부</div>' +
                     '<div style="width:82%; margin:0 auto 12px auto; border-top:2px solid #0F766E;"></div>' +
@@ -1920,8 +1924,8 @@
                     '<p style="text-align:center; margin:0; font-size:10.5pt;">2026년 경기북부 직업교육훈련 과정</p>' +
                     '</div>' +
                     '<table>' +
-                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">과정명</th><td style="width:75%; text-align:left;"><input type="text" class="print-input input-w-90" placeholder="과정명을 입력하세요"></td></tr>' +
-                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">일자</th><td style="width:75%; text-align:left;"><input type="text" class="print-input input-w-200" value="' + dateStr + '"></td></tr>' +
+                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">과정명</th><td style="width:75%; text-align:center;"><input type="text" class="print-input input-w-90" placeholder="과정명을 입력하세요"></td></tr>' +
+                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">일자</th><td style="width:75%; text-align:center;"><input type="text" class="print-input input-w-200" value="' + dateStr + '"></td></tr>' +
                     '</table>' +
                     '<div class="doc-box">' +
                     '<p class="doc-intro">본인은 경기도일자리재단 북부사업본부에서 시행하는 직업교육훈련에 참여함에 있어 아래 사항을 성실히 이행할 것을 서약합니다.</p>' +
@@ -1957,7 +1961,7 @@
                         '<td style="text-align:center;"><span class="meta-value">(서명)</span></td>' +
                         '</tr>';
                 }
-                html = '<div>' +
+                html = '<div class="form-text-center">' +
                     '<div class="doc-header">' +
                     '<div style="text-align:center; font-size:14pt; font-weight:600; margin-bottom:8px;">경기도일자리재단 북부사업본부</div>' +
                     '<div style="width:82%; margin:0 auto 12px auto; border-top:2px solid #0F766E;"></div>' +
@@ -1966,8 +1970,8 @@
                     '<p style="text-align:center; margin:0; font-size:10.5pt;">2026년 경기북부 직업교육훈련 과정</p>' +
                     '</div>' +
                     '<table>' +
-                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">과정명</th><td style="width:75%; text-align:left;"><input type="text" class="print-input input-w-90" placeholder="과정명을 입력하세요"></td></tr>' +
-                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">일자</th><td style="width:75%; text-align:left;"><input type="text" class="print-input input-w-200" value="' + dateStr + '"></td></tr>' +
+                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">과정명</th><td style="width:75%; text-align:center;"><input type="text" class="print-input input-w-90" placeholder="과정명을 입력하세요"></td></tr>' +
+                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">일자</th><td style="width:75%; text-align:center;"><input type="text" class="print-input input-w-200" value="' + dateStr + '"></td></tr>' +
                     '</table>' +
                     '<table>' +
                     '<colgroup><col style="width:10%;"><col style="width:40%;"><col style="width:25%;"><col style="width:25%;"></colgroup>' +
@@ -1985,7 +1989,7 @@
                     '</div>';
             } else if (formType === 'security') {
                 titleEl.textContent = '🔒 보안서약서 편집 중';
-                html = '<div>' +
+                html = '<div class="form-text-center">' +
                     '<div class="doc-header">' +
                     '<div style="text-align:center; font-size:14pt; font-weight:600; margin-bottom:8px;">경기도일자리재단 북부사업본부</div>' +
                     '<div style="width:82%; margin:0 auto 12px auto; border-top:2px solid #0F766E;"></div>' +
@@ -1994,8 +1998,8 @@
                     '<p style="text-align:center; margin:0; font-size:10.5pt;">면접위원 개인정보 보호 서약</p>' +
                     '</div>' +
                     '<table>' +
-                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">일자</th><td style="width:75%; text-align:left;"><input type="text" class="print-input input-w-200" value="' + dateStr + '"></td></tr>' +
-                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">과정명</th><td style="width:75%; text-align:left;"><input type="text" class="print-input input-w-90" placeholder="과정명을 입력하세요"></td></tr>' +
+                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">일자</th><td style="width:75%; text-align:center;"><input type="text" class="print-input input-w-200" value="' + dateStr + '"></td></tr>' +
+                    '<tr><th style="width:25%; text-align:center; background:#f0faf8;">과정명</th><td style="width:75%; text-align:center;"><input type="text" class="print-input input-w-90" placeholder="과정명을 입력하세요"></td></tr>' +
                     '</table>' +
                     '<div class="doc-box">' +
                     '<p class="doc-intro">본인은 경기도일자리재단 북부사업본부의 직업교육훈련 면접 심사에 참여함에 있어, 아래의 보안 사항을 준수할 것을 서약합니다.</p>' +
