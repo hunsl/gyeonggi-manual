@@ -57,8 +57,8 @@
     position: relative;
   }
   .hero {
-    min-height: 7.2cm;
-    padding: 1.7cm 2.3cm 1.35cm;
+    min-height: 6.9cm;
+    padding: 1.55cm 2.3cm 1.2cm;
     background:
       radial-gradient(circle at 92% 5%, rgba(255,255,255,.13) 0 3.3cm, transparent 3.35cm),
       radial-gradient(circle at 7% 92%, rgba(255,255,255,.11) 0 2.2cm, transparent 2.25cm),
@@ -110,7 +110,7 @@
     bottom: -0.38cm;
   }
   .summary {
-    padding: 1.25cm 2.35cm 0.8cm;
+    padding: 1.05cm 2.35cm 0.62cm;
     text-align: center;
   }
   .summary strong {
@@ -130,51 +130,77 @@
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.58cm 0.72cm;
-    padding: 0.55cm 2.05cm 1.05cm;
+    gap: 0.72cm 0.82cm;
+    padding: 0.48cm 1.8cm 1.05cm;
   }
   .card {
     display: grid;
-    grid-template-columns: 1.7cm 1fr;
-    column-gap: 0.42cm;
-    min-height: 3.35cm;
-    padding: 0.55cm 0.6cm 0.5cm;
-    border: 0.055cm solid var(--line);
-    border-left: 0.17cm solid var(--teal);
-    border-radius: 0.28cm;
-    background: linear-gradient(180deg, #FFFFFF 0%, #F9FCFD 100%);
+    grid-template-columns: 2.25cm 1fr;
+    column-gap: 0.55cm;
+    align-items: center;
+    min-height: 3.95cm;
+    padding: 0.62cm 0.68cm 0.58cm;
+    border: 0.06cm solid var(--line);
+    border-left: 0.22cm solid var(--teal);
+    border-radius: 0.34cm;
+    background:
+      linear-gradient(90deg, rgba(15,118,110,.045) 0 2.5cm, transparent 2.5cm),
+      linear-gradient(180deg, #FFFFFF 0%, #F9FCFD 100%);
+    box-shadow: 0 0.12cm 0.34cm rgba(22, 49, 91, 0.06);
+  }
+  .card > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.25cm;
+  }
+  .card > div:last-child {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.12cm;
+    height: 0.62cm;
+    border-radius: 999px;
+    background: #FFF0E7;
     color: var(--orange);
-    font-size: 18pt;
+    font-size: 17pt;
     font-weight: 900;
     line-height: 1;
-    margin-bottom: 0.2cm;
+    margin-bottom: 0.18cm;
   }
   .icon {
-    width: 1.25cm;
-    height: 1.25cm;
+    width: 1.78cm;
+    height: 1.78cm;
     display: grid;
     place-items: center;
     border-radius: 999px;
     background: #E7F4F3;
     color: var(--teal);
-    font-size: 23pt;
+    font-size: 31pt;
     font-weight: 900;
+    line-height: 1;
+    box-shadow: inset 0 0 0 0.06cm rgba(15, 118, 110, 0.12);
   }
   .card h2 {
-    margin: 0 0 0.2cm;
+    margin: 0 0 0.18cm;
     color: #16315B;
-    font-size: 23pt;
+    font-size: 24.5pt;
     line-height: 1.18;
     font-weight: 900;
     letter-spacing: 0;
+    word-break: keep-all;
   }
   .card p {
     margin: 0;
     color: #4B5563;
-    font-size: 16.2pt;
-    line-height: 1.42;
+    font-size: 16.8pt;
+    line-height: 1.44;
     font-weight: 650;
     word-break: keep-all;
   }
@@ -184,6 +210,12 @@
   .card.warning .icon {
     background: #FFF0E7;
     color: var(--orange);
+    box-shadow: inset 0 0 0 0.06cm rgba(228, 108, 44, 0.14);
+  }
+  .card.warning {
+    background:
+      linear-gradient(90deg, rgba(228,108,44,.055) 0 2.5cm, transparent 2.5cm),
+      linear-gradient(180deg, #FFFFFF 0%, #FFFCFA 100%);
   }
   .callout {
     margin: 0.55cm 2.05cm 1.35cm;
