@@ -25,7 +25,7 @@
     font-family: "Pretendard", "Malgun Gothic", "맑은 고딕", Arial, sans-serif;
   }
   .toolbar {
-    max-width: 29.7cm;
+    max-width: 28.3cm;
     margin: 16px auto 0;
     padding: 12px 18px;
     border: 1px solid #B9D5DD;
@@ -48,17 +48,19 @@
     cursor: pointer;
   }
   .page {
-    width: 29.7cm;
-    min-height: 42cm;
+    width: 28.3cm;
+    height: 40.6cm;
     margin: 14px auto 48px;
     background: var(--paper);
     box-shadow: 0 4px 18px rgba(15, 23, 42, 0.18);
     overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
   .hero {
-    min-height: 6.9cm;
-    padding: 1.55cm 2.3cm 1.2cm;
+    flex: 0 0 5.85cm;
+    padding: 1.1cm 2.1cm 0.78cm;
     background:
       radial-gradient(circle at 92% 5%, rgba(255,255,255,.13) 0 3.3cm, transparent 3.35cm),
       radial-gradient(circle at 7% 92%, rgba(255,255,255,.11) 0 2.2cm, transparent 2.25cm),
@@ -67,23 +69,23 @@
     text-align: center;
   }
   .hero .eyebrow {
-    margin: 0 0 0.28cm;
+    margin: 0 0 0.22cm;
     color: #B7D2F0;
-    font-size: 23pt;
+    font-size: 21pt;
     font-weight: 800;
     letter-spacing: 0;
   }
   h1 {
     margin: 0;
-    font-size: 42pt;
+    font-size: 38pt;
     line-height: 1.16;
     font-weight: 900;
     letter-spacing: 0;
   }
   .hero-mark {
-    width: 2.45cm;
-    height: 1.55cm;
-    margin: 0.45cm auto 0;
+    width: 2.25cm;
+    height: 1.38cm;
+    margin: 0.34cm auto 0;
     border: 0.11cm solid #A9C5E5;
     border-radius: 0.17cm;
     position: relative;
@@ -96,8 +98,8 @@
     border-bottom: 0.12cm solid #FACC15;
     transform: rotate(-45deg);
     position: absolute;
-    left: 0.62cm;
-    top: 0.34cm;
+    left: 0.54cm;
+    top: 0.28cm;
   }
   .hero-mark::after {
     content: "";
@@ -110,41 +112,46 @@
     bottom: -0.38cm;
   }
   .summary {
-    padding: 1.05cm 2.35cm 0.62cm;
+    flex: 0 0 3.06cm;
+    padding: 0.62cm 2.1cm 0.38cm;
     text-align: center;
   }
   .summary strong {
     display: block;
     color: #142C52;
-    font-size: 25pt;
-    line-height: 1.35;
-    margin-bottom: 0.18cm;
+    font-size: 22.5pt;
+    line-height: 1.28;
+    margin-bottom: 0.14cm;
   }
   .summary p {
     margin: 0;
     color: var(--muted);
-    font-size: 18pt;
-    line-height: 1.45;
+    font-size: 16.5pt;
+    line-height: 1.36;
     font-weight: 600;
   }
   .grid {
+    flex: 1 1 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.72cm 0.82cm;
-    padding: 0.48cm 1.8cm 1.05cm;
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    gap: 0.48cm 0.66cm;
+    min-height: 0;
+    padding: 0.32cm 1.35cm 0.38cm;
   }
   .card {
     display: grid;
-    grid-template-columns: 2.25cm 1fr;
-    column-gap: 0.55cm;
+    grid-template-columns: 2.05cm 1fr;
+    column-gap: 0.44cm;
     align-items: center;
-    min-height: 3.95cm;
-    padding: 0.62cm 0.68cm 0.58cm;
+    min-height: 0;
+    height: 100%;
+    padding: 0.42cm 0.5cm 0.38cm;
     border: 0.06cm solid var(--line);
     border-left: 0.22cm solid var(--teal);
     border-radius: 0.34cm;
     background:
-      linear-gradient(90deg, rgba(15,118,110,.045) 0 2.5cm, transparent 2.5cm),
+      linear-gradient(90deg, rgba(15,118,110,.045) 0 2.34cm, transparent 2.34cm),
       linear-gradient(180deg, #FFFFFF 0%, #F9FCFD 100%);
     box-shadow: 0 0.12cm 0.34cm rgba(22, 49, 91, 0.06);
   }
@@ -152,7 +159,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.25cm;
+    min-height: 1.85cm;
   }
   .card > div:last-child {
     min-width: 0;
@@ -165,33 +172,33 @@
     align-items: center;
     justify-content: center;
     width: 1.12cm;
-    height: 0.62cm;
+    height: 0.58cm;
     border-radius: 999px;
     background: #FFF0E7;
     color: var(--orange);
-    font-size: 17pt;
+    font-size: 15.5pt;
     font-weight: 900;
     line-height: 1;
-    margin-bottom: 0.18cm;
+    margin-bottom: 0.13cm;
   }
   .icon {
-    width: 1.78cm;
-    height: 1.78cm;
+    width: 1.62cm;
+    height: 1.62cm;
     display: grid;
     place-items: center;
     border-radius: 999px;
     background: #E7F4F3;
     color: var(--teal);
-    font-size: 31pt;
+    font-size: 28pt;
     font-weight: 900;
     line-height: 1;
     box-shadow: inset 0 0 0 0.06cm rgba(15, 118, 110, 0.12);
   }
   .card h2 {
-    margin: 0 0 0.18cm;
+    margin: 0 0 0.12cm;
     color: #16315B;
-    font-size: 24.5pt;
-    line-height: 1.18;
+    font-size: 21.5pt;
+    line-height: 1.14;
     font-weight: 900;
     letter-spacing: 0;
     word-break: keep-all;
@@ -199,8 +206,8 @@
   .card p {
     margin: 0;
     color: #4B5563;
-    font-size: 16.8pt;
-    line-height: 1.44;
+    font-size: 14.7pt;
+    line-height: 1.34;
     font-weight: 650;
     word-break: keep-all;
   }
@@ -214,33 +221,30 @@
   }
   .card.warning {
     background:
-      linear-gradient(90deg, rgba(228,108,44,.055) 0 2.5cm, transparent 2.5cm),
+      linear-gradient(90deg, rgba(228,108,44,.055) 0 2.34cm, transparent 2.34cm),
       linear-gradient(180deg, #FFFFFF 0%, #FFFCFA 100%);
   }
   .callout {
-    margin: 0.55cm 2.05cm 1.35cm;
-    padding: 0.48cm 0.65cm;
+    flex: 0 0 auto;
+    margin: 0.06cm 1.45cm 0.34cm;
+    padding: 0.34cm 0.6cm;
     border-radius: 0.25cm;
     background: linear-gradient(90deg, #EAF5F7 0%, #F3FAF7 100%);
     color: #16315B;
     text-align: center;
-    font-size: 19pt;
-    line-height: 1.35;
+    font-size: 17pt;
+    line-height: 1.28;
     font-weight: 900;
   }
   .footer {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2.2cm;
+    flex: 0 0 1.82cm;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.28cm;
     background: var(--navy);
     color: #fff;
-    font-size: 22pt;
+    font-size: 21pt;
     font-weight: 900;
   }
   .footer-dot {
@@ -254,14 +258,16 @@
     body { background: #fff; }
     .toolbar { display: none; }
     .page {
-      width: auto;
-      min-height: 100vh;
+      width: 28.3cm;
+      height: 40.6cm;
+      min-height: 0;
       margin: 0;
       box-shadow: none;
+      overflow: hidden;
     }
     @page {
       size: A3 portrait;
-      margin: 0;
+      margin: 0.7cm;
     }
   }
   @media screen and (max-width: 900px) {
