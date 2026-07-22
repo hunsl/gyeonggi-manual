@@ -140,6 +140,10 @@
     padding: 0.32cm 1.35cm 0.38cm;
   }
   .card {
+    --accent: #0F766E;
+    --accent-soft: #E7F4F3;
+    --accent-wash: rgba(15,118,110,.07);
+    --accent-shadow: rgba(15, 118, 110, 0.16);
     display: grid;
     grid-template-columns: 2.05cm 1fr;
     column-gap: 0.44cm;
@@ -147,13 +151,13 @@
     min-height: 0;
     height: 100%;
     padding: 0.42cm 0.5cm 0.38cm;
-    border: 0.06cm solid var(--line);
-    border-left: 0.22cm solid var(--teal);
+    border: 0.06cm solid #DCE9EF;
+    border-left: 0.28cm solid var(--accent);
     border-radius: 0.34cm;
     background:
-      linear-gradient(90deg, rgba(15,118,110,.045) 0 2.34cm, transparent 2.34cm),
+      linear-gradient(90deg, var(--accent-wash) 0 2.34cm, transparent 2.34cm),
       linear-gradient(180deg, #FFFFFF 0%, #F9FCFD 100%);
-    box-shadow: 0 0.12cm 0.34cm rgba(22, 49, 91, 0.06);
+    box-shadow: 0 0.12cm 0.34cm rgba(22, 49, 91, 0.08);
   }
   .card > div:first-child {
     display: flex;
@@ -187,16 +191,16 @@
     display: grid;
     place-items: center;
     border-radius: 999px;
-    background: #E7F4F3;
-    color: var(--teal);
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 28pt;
     font-weight: 900;
     line-height: 1;
-    box-shadow: inset 0 0 0 0.06cm rgba(15, 118, 110, 0.12);
+    box-shadow: inset 0 0 0 0.07cm var(--accent-shadow), 0 0.09cm 0.22cm rgba(15, 23, 42, 0.08);
   }
   .card h2 {
     margin: 0 0 0.12cm;
-    color: #16315B;
+    color: #102A4C;
     font-size: 21.5pt;
     line-height: 1.14;
     font-weight: 900;
@@ -212,29 +216,76 @@
     word-break: keep-all;
   }
   .card.warning {
-    border-left-color: var(--orange);
+    --accent: #E46C2C;
+    --accent-soft: #FFF0E7;
+    --accent-wash: rgba(228,108,44,.085);
+    --accent-shadow: rgba(228, 108, 44, 0.18);
+  }
+  .card:nth-child(2) {
+    --accent: #2563EB;
+    --accent-soft: #EAF1FF;
+    --accent-wash: rgba(37, 99, 235, 0.075);
+    --accent-shadow: rgba(37, 99, 235, 0.16);
+  }
+  .card:nth-child(3) {
+    --accent: #7C3AED;
+    --accent-soft: #F1EAFF;
+    --accent-wash: rgba(124, 58, 237, 0.07);
+    --accent-shadow: rgba(124, 58, 237, 0.16);
+  }
+  .card:nth-child(4) {
+    --accent: #0891B2;
+    --accent-soft: #E6F8FC;
+    --accent-wash: rgba(8, 145, 178, 0.075);
+    --accent-shadow: rgba(8, 145, 178, 0.16);
+  }
+  .card:nth-child(6) {
+    --accent: #16A34A;
+    --accent-soft: #EAF8EF;
+    --accent-wash: rgba(22, 163, 74, 0.075);
+    --accent-shadow: rgba(22, 163, 74, 0.16);
+  }
+  .card:nth-child(7) {
+    --accent: #0D9488;
+    --accent-soft: #E6F7F5;
+    --accent-wash: rgba(13, 148, 136, 0.08);
+    --accent-shadow: rgba(13, 148, 136, 0.16);
+  }
+  .card:nth-child(8) {
+    --accent: #DC2626;
+    --accent-soft: #FEECEC;
+    --accent-wash: rgba(220, 38, 38, 0.07);
+    --accent-shadow: rgba(220, 38, 38, 0.15);
   }
   .card.warning .icon {
-    background: #FFF0E7;
-    color: var(--orange);
-    box-shadow: inset 0 0 0 0.06cm rgba(228, 108, 44, 0.14);
-  }
-  .card.warning {
-    background:
-      linear-gradient(90deg, rgba(228,108,44,.055) 0 2.34cm, transparent 2.34cm),
-      linear-gradient(180deg, #FFFFFF 0%, #FFFCFA 100%);
+    background: var(--accent-soft);
+    color: var(--accent);
   }
   .callout {
-    flex: 0 0 auto;
-    margin: 0.06cm 1.45cm 0.34cm;
-    padding: 0.34cm 0.6cm;
-    border-radius: 0.25cm;
-    background: linear-gradient(90deg, #EAF5F7 0%, #F3FAF7 100%);
+    flex: 0 0 1.72cm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.06cm;
+    margin: 0.08cm 1.45cm 0.32cm;
+    padding: 0.22cm 0.5cm;
+    border: 0.055cm solid #B7D9E3;
+    border-radius: 0.3cm;
+    background:
+      linear-gradient(90deg, rgba(15,118,110,.11), rgba(37,99,235,.08), rgba(228,108,44,.08)),
+      #F4FBFC;
     color: #16315B;
     text-align: center;
-    font-size: 17pt;
-    line-height: 1.28;
+    font-size: 15.6pt;
+    line-height: 1.18;
     font-weight: 900;
+    word-break: keep-all;
+    overflow: hidden;
+  }
+  .callout span {
+    display: block;
+    white-space: nowrap;
   }
   .footer {
     flex: 0 0 1.82cm;
@@ -392,7 +443,10 @@
       </article>
     </section>
 
-    <div class="callout">본 안내는 교육생과 교육기관 모두의 안전한 교육환경 조성을 위한 절차입니다. 적극 협조해 주시기 바랍니다.</div>
+    <div class="callout">
+      <span>본 안내는 교육생과 교육기관 모두의 안전한 교육환경 조성을 위한 절차입니다.</span>
+      <span>적극 협조해 주시기 바랍니다.</span>
+    </div>
 
     <footer class="footer">
       <span class="footer-dot"></span>
